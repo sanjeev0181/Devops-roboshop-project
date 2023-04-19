@@ -1,4 +1,7 @@
-source common.sh
+script_path=$(dirname $0)  
+source ${script_path}/common.sh
+echo ${app_user}
+echo $script_path
 
 echo -e "\e[36m>>>>>>>>> Install mvn <<<<<<<<\e[0m"
 yum install maven -y
@@ -37,7 +40,7 @@ echo -e "\e[36m>>>>>>>>> Load schema <<<<<<<<\e[0m"
 mysql -h mysql-dev.rdevops72.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
 
 echo -e "\e[36m>>>>>>>>> Set systemD service <<<<<<<<\e[0m"
-cp shipping.service  /etc/systemd/system/shipping.service
+cp $script_path/shipping.service  /etc/systemd/system/shipping.service
 
 echo -e "\e[36m>>>>>>>>> start payment service <<<<<<<<\e[0m"
 systemctl daemon-reload

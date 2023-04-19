@@ -5,6 +5,11 @@
 # #Update listen address from 127.0.0.1 to 0.0.0.0 in /etc/redis.conf & /etc/redis/redis.conf
 # systemctl enable redis 
 # systemctl start redis 
+
+script_path=$(dirname $0)  
+source ${script_path}/common.sh
+# 
+
 echo -e "\e[36m>>>>>>>>> Install Redis Repos <<<<<<<<\e[0m"
 yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
 

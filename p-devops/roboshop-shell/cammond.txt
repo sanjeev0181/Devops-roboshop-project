@@ -1,0 +1,1 @@
+cd /tmp  sudo bash /home/centos/roboshop-shell/user.sh
