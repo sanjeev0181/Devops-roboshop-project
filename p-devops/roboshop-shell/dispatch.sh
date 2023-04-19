@@ -1,5 +1,6 @@
-source common.sh
-
+script=$(realpath "$0")
+script_path=$(dirname "$script")  
+source ${script_path}/common.sh
 echo -e "\e[36m>>>>>>>>> Install golang <<<<<<<<\e[0m"
 yum install golang -y
 
@@ -24,7 +25,7 @@ go get
 go build
 
 echo -e "\e[36m>>>>>>>>> Set systemD service <<<<<<<<\e[0m"
-cp dispatch.service  /etc/systemd/system/dispatch.service
+cp $script_path/dispatch.service  /etc/systemd/system/dispatch.service
 
 echo -e "\e[36m>>>>>>>>> start payment service <<<<<<<<\e[0m"
 systemctl daemon-reload
