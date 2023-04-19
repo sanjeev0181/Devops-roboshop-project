@@ -1,5 +1,6 @@
-source ${script_path}/common.sh
-# echo ${app_user}
+script=$(realpath "$0")
+script_path=$(dirname "$script")  
+source ${script_path}/common.sh# echo ${app_user}
 # echo $script_path
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 yum install erlang -y

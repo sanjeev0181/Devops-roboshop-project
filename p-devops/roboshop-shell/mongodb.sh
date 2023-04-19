@@ -1,5 +1,6 @@
-source ${script_path}/common.sh
-# echo ${app_user}
+script=$(realpath "$0")
+script_path=$(dirname "$script")  
+source ${script_path}/common.sh# echo ${app_user}
 # echo $script_path
 
 cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo
