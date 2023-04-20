@@ -1,8 +1,12 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")  
 source ${script_path}/common.sh# echo ${app_user}
-# echo $script_path
 rabbitmq_appuser_password=$1
+
+if [-z "$rabbitmq_appuser_password"]; then
+    echo Input Roboshop Appuser password Missing
+    exit
+if
 
 echo -e "\e[36m>>>>>>>>> Install python <<<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y

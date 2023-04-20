@@ -4,6 +4,17 @@ print_head() {
   echo -e "\e[35m>>>>>>>>> $1 <<<<<<<<\e[0m"   
 }
 
+schema_setup() {
+    echo -e "\e[36m>>>>>>>>> Set systemD service <<<<<<<<\e[0m"
+    cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo
+
+    echo -e "\e[36m>>>>>>>>> Install mongodb client <<<<<<<<\e[0m"
+    yum install mongodb-org-shell -y
+
+    echo -e "\e[36m>>>>>>>>> Load schema <<<<<<<<\e[0m"
+    mongo --hostmongodb-dev.rdevops72online </app/schema/${component}.js
+}
+
 func_nodejs() {
 print_head "Configuring Node js Repos"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -36,5 +47,6 @@ print_head "Start Cart Service"
 systemctl daemon-reload
 systemctl enable ${component} 
 systemctl start ${component}
+schema_setup
 
 }

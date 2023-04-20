@@ -2,8 +2,11 @@ script=$(realpath "$0")
 script_path=$(dirname "$script")  
 source ${script_path}/common.sh
 mysql_root_password=$1
-# echo ${app_user}
-# echo $script_path
+
+if [-z "$mysql_root_password"]; then
+    echo Input MYSQL root password Missing
+    exit
+if
 
 echo -e "\e[36m>>>>>>>>> Install mvn <<<<<<<<\e[0m"
 yum install maven -y
