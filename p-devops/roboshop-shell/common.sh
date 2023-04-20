@@ -6,14 +6,14 @@ print_head() {
 
 schema_setup() {
     if [ "$schema_setup" == "mango"]; then
-    echo -e "\e[36m>>>>>>>>> Set systemD service <<<<<<<<\e[0m"
-    cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo
+      echo -e "\e[36m>>>>>>>>> Set systemD service <<<<<<<<\e[0m"
+      cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo
 
-    echo -e "\e[36m>>>>>>>>> Install mongodb client <<<<<<<<\e[0m"
-    yum install mongodb-org-shell -y
+      echo -e "\e[36m>>>>>>>>> Install mongodb client <<<<<<<<\e[0m"
+      yum install mongodb-org-shell -y
 
-    echo -e "\e[36m>>>>>>>>> Load schema <<<<<<<<\e[0m"
-    mongo --hostmongodb-dev.rdevops72online </app/schema/${component}.js
+      echo -e "\e[36m>>>>>>>>> Load schema <<<<<<<<\e[0m"
+      mongo --hostmongodb-dev.rdevops72online </app/schema/${component}.js
     if
 }
 
