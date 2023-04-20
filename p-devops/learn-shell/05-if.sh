@@ -17,3 +17,9 @@ else
 fi
 
 ##Alway double quote variables in expression
+
+if [ "$quanity" -gt 100]; then
+    echo Mango price - 0.5s
+else
+    echo Mango price - 1s
+fi
