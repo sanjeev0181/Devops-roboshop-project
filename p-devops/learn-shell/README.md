@@ -31,3 +31,8 @@ modify(substitute) some words
     sed -i -e 's|bin|BIN|g' passwd 
     sed -i -e '10s|bin|BIN|g' passwd 
 Instead of | we can use / , ?, :, ;, #, @
+
+
+Problem:
+1. If input is not given then script should fail
+2.
