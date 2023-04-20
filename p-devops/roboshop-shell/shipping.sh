@@ -1,6 +1,7 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")  
 source ${script_path}/common.sh
+mysql_root_password=$1
 # echo ${app_user}
 # echo $script_path
 
@@ -38,7 +39,7 @@ echo -e "\e[36m>>>>>>>>> Install mysql <<<<<<<<\e[0m"
 yum install mysql -y 
 
 echo -e "\e[36m>>>>>>>>> Load schema <<<<<<<<\e[0m"
-mysql -h mysql-dev.rdevops72.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+mysql -h mysql-dev.rdevops72.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql 
 
 echo -e "\e[36m>>>>>>>>> Set systemD service <<<<<<<<\e[0m"
 cp $script_path/shipping.service  /etc/systemd/system/shipping.service
