@@ -5,6 +5,7 @@ print_head() {
 }
 
 schema_setup() {
+    if [ "$schema_setup" == "mango"]; then
     echo -e "\e[36m>>>>>>>>> Set systemD service <<<<<<<<\e[0m"
     cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo
 
@@ -13,6 +14,7 @@ schema_setup() {
 
     echo -e "\e[36m>>>>>>>>> Load schema <<<<<<<<\e[0m"
     mongo --hostmongodb-dev.rdevops72online </app/schema/${component}.js
+    if
 }
 
 func_nodejs() {
