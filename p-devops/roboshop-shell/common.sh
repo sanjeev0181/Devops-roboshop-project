@@ -47,7 +47,7 @@ func_schema_setup() {
 #common step on all line
 func_app_prereq() {
   func_print_head "Add Application User"
-  useradd ${app_user}  >/tmp/roboshop.log
+  useradd ${app_user}  &>/tmp/roboshop.log
   func_status_check $? 
 
   func_print_head "Create Application Dir"
