@@ -1,5 +1,6 @@
 app_user =roboshop
 log_file=/tmp/roboshop.log
+#rm -rf $log_file
 
 func_print_head() {
   echo -e "\e[35m>>>>>>>>> $1 <<<<<<<<\e[0m"   
