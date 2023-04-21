@@ -93,7 +93,7 @@ func_nodejs() {
   func_status_check $? 
 
   func_print_head "Install NodeJs"
-  yum install nodejs -y   &>>/tmp/roboshop.log
+  yum install nodejs -y  
   
   func_status_check $? 
   #func_app_prereq
@@ -126,7 +126,7 @@ func_nodejs() {
 #install 
 func_java() {
   func_print_head "Install mvn" 
-  yum install maven -y
+  yum install maven -y   &>>$log_file
 
   func_status_check $?
   func_app_prereq
