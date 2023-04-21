@@ -1,4 +1,5 @@
 app_user =roboshop
+log_file=/tmp/roboshop.log
 
 func_print_head() {
   echo -e "\e[35m>>>>>>>>> $1 <<<<<<<<\e[0m"   
@@ -20,25 +21,25 @@ func_status_check() {
 func_schema_setup() {
     if [ "$schema_setup" == "mango"]; then
       func_print_head Set systemD service 
-      cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo
+      cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo   &>>$log_file
       func_status_check $?
 
       func_print_head Install mongodb client 
-      yum install mongodb-org-shell -y
+      yum install mongodb-org-shell -y  &>>$log_file
       func_status_check $?
 
       func_print_head Load schema 
-      mongo --hostmongodb-dev.rdevops72online </app/schema/${component}.js
+      mongo --hostmongodb-dev.rdevops72online </app/schema/${component}.js  &>>$log_file
       func_status_check $?
     if
 
     if [ "$schema_setup" == "mysql" ]; then
         func_print_head "Install mysql"
-        yum install mysql -y
+        yum install mysql -y  &>>$log_file
         func_status_check $? 
 
         func_print_head "Load schema" 
-        mysql -h mysql-dev.rdevops72.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql 
+        mysql -h mysql-dev.rdevops72.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql  &>>$log_file
         func_status_check $?
     if
 }
@@ -47,7 +48,7 @@ func_schema_setup() {
 #common step on all line
 func_app_prereq() {
   func_print_head "Add Application User"
-  useradd ${app_user}  &>>/tmp/roboshop.log
+  useradd ${app_user}  &>>$log_file
   func_status_check $? 
 
   func_print_head "Create Application Dir"
@@ -61,7 +62,7 @@ func_app_prereq() {
 
   func_print_head "Extract Application content"
   cd /app 
-  unzip /tmp/${component}.zip
+  unzip /tmp/${component}.zip  &>>$log_file
   func_status_check $?
   #cd /app 
 
@@ -74,7 +75,7 @@ func_app_prereq() {
 #systemd setup
 func_systemd_setup() {
   func_print_head "Copy Catalogue SystemD file"
-  cp $script_path/${component}.service /etc/systemd/system/${component}.service
+  cp $script_path/${component}.service /etc/systemd/system/${component}.service  &>>$log_file
   func_status_check $? 
 
   func_print_head "Start ${component} Service"
@@ -89,27 +90,27 @@ func_systemd_setup() {
 #install Node js
 func_nodejs() {
   func_print_head "Configuring Node js Repos"
-  curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+  curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$log_file
   func_status_check $? 
 
   func_print_head "Install NodeJs"
-  yum install nodejs -y  
+  yum install nodejs -y   &>>$log_file
   
   func_status_check $? 
   #func_app_prereq
   func_print_head "Add Application User" 
-  useradd  ${app_user} #roboshop
+  useradd  ${app_user}   &>>$log_file
 
   func_print_head "Create Application Directory"
   rm -rf /app
   mkdir /app 
 
   func_print_head "Download App content"  
-  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip 
+  curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip    &>>$log_file
   cd /app 
 
   func_print_head "Unzip App content"  
-  unzip /tmp/${component}.zip
+  unzip /tmp/${component}.zip    &>>$log_file
   #cd /app
   
   func_print_head "Install Nodejs Dependencies"
