@@ -17,6 +17,7 @@ func_print_head() {
 #     exit 1
 #   fi
 # }
+
 func_status_check() {
   if [ $1 -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
