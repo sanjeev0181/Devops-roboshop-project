@@ -4,6 +4,16 @@ func_print_head() {
   echo -e "\e[35m>>>>>>>>> $1 <<<<<<<<\e[0m"   
 }
 
+#status check
+func_status_check() {
+  if [ $1 -eq 0 ]; then
+    echo -e "\e[32mSUCCESS[0m"
+  else 
+    echo -e "\e[31mFAILURE[0m"
+  if
+}
+
+
 #mongodb install
 func_schema_setup() {
     if [ "$schema_setup" == "mango"]; then
@@ -101,21 +111,13 @@ func_java() {
   func_print_head "Install mvn" 
   yum install maven -y
 
-  if [ $? -eq 0 ]; then
-    echo -e "\e[32mSUCCESS[0m"
-  else 
-    echo -e "\e[31mFAILURE[0m"
+  func_status_check $?
   func_app_prereq
-  if
+  
 
   func_print_head "Download mvn dependencies" 
   mvn clean package 
-  if [ $? -eq 0 ]; then
-    echo -e "\e[32mSUCCESS[0m"
-  else 
-    echo -e "\e[31mFAILURE[0m"
-  func_app_prereq
-  if
+  func_status_check $?  
   mv target/${component}-1.0.jar ${component}.jar
   func_schema_setup
   func_systemd_setup
