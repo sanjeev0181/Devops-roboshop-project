@@ -4,7 +4,7 @@ source ${script_path}/common.sh
 
 
 func_print_head "Setup Mangodb Repo"
-cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo &>>$log_file
+cp mongo.repo  /etc/yum.repos.d/mongo.repo &>>$log_file
 func_status_check $?
 
 func_print_head  "Install mongodb"
