@@ -1,4 +1,4 @@
-app_user =roboshop
+app_user=roboshop
 log_file=/tmp/roboshop.log
 #rm -rf $log_file
 
