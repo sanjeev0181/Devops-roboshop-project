@@ -7,10 +7,23 @@ if [-z "$mysql_root_password"]; then
     echo Input mysql root password Missing
     exit
 if
+func_print_head "Disable mysql 8 version"
+dnf module disable mysql -y  &>>$log_file
+func_status_check $?
 
-dnf module disable mysql -y 
-cp $script_path/mysql.repo  /etc/yum.repos.d/mysql.repo
-yum install mysql-community-server -y
-systemctl enable mysqld
-systemctl start mysqld  
-mysql_secure_installation --set-root-pass $mysql_root_password
+func_print_head "Copy mysql repos file"
+cp $script_path/mysql.repo  /etc/yum.repos.d/mysql.repo  &>>$log_file
+func_status_check $?
+
+func_print_head "Install mysql"
+yum install mysql-community-server -y  &>>$log_file
+func_status_check $?
+
+func_print_head "start mysql"
+systemctl enable mysqld  &>>$log_file
+systemctl start mysqld  &>>$log_file
+func_status_check $?
+
+func_print_head "Reset mysql password"
+mysql_secure_installation --set-root-pass $mysql_root_password &>>$log_file
+func_status_check $?
