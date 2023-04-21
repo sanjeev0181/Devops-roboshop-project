@@ -15,7 +15,7 @@ func_status_check() {
     echo -e "\e[31mFAILURE[0m"
     echo "Refer the log file /tmp/roboshop.log for more information"
     exit 1
-  if
+  fi
 }
 
 
@@ -33,7 +33,7 @@ func_schema_setup() {
       func_print_head Load schema 
       mongo --hostmongodb-dev.rdevops72online </app/schema/${component}.js  &>>$log_file
       func_status_check $?
-    if
+    fi
 
     if [ "$schema_setup" == "mysql" ]; then
         func_print_head "Install mysql"
@@ -43,7 +43,7 @@ func_schema_setup() {
         func_print_head "Load schema" 
         mysql -h mysql-dev.rdevops72.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql  &>>$log_file
         func_status_check $?
-    if
+    fi
 }
 
 
@@ -53,7 +53,7 @@ func_app_prereq() {
   id ${app_user}  &>>$log_file
   if [ $? -ne 0 ]; then
     useradd ${app_user}  &>>$log_file
-  if 
+  fi
   func_status_check $? 
 
   func_print_head "Create Application Dir"
