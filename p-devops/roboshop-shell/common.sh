@@ -10,6 +10,8 @@ func_status_check() {
     echo -e "\e[32mSUCCESS[0m"
   else 
     echo -e "\e[31mFAILURE[0m"
+    echo "Refer the log file /tmp/roboshop.log for more information"
+    exit 1
   if
 }
 
@@ -45,7 +47,7 @@ func_schema_setup() {
 #common step on all line
 func_app_prereq() {
   func_print_head "Add Application User"
-  useradd ${app_user}
+  useradd ${app_user}  >/tmp/roboshop.log
   func_status_check $? 
 
   func_print_head "Create Application Dir"
@@ -91,7 +93,7 @@ func_nodejs() {
   func_status_check $? 
 
   func_print_head "Install NodeJs"
-  yum install nodejs -y
+  yum install nodejs -y   >/tmp/roboshop.log
   
   func_status_check $? 
   #func_app_prereq
