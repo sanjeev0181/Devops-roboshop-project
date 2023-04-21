@@ -19,20 +19,25 @@ func_schema_setup() {
     if [ "$schema_setup" == "mango"]; then
       func_print_head Set systemD service 
       cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo
+      func_status_check $?
 
       func_print_head Install mongodb client 
       yum install mongodb-org-shell -y
+      func_status_check $?
 
       func_print_head Load schema 
       mongo --hostmongodb-dev.rdevops72online </app/schema/${component}.js
+      func_status_check $?
     if
 
     if [ "$schema_setup" == "mysql" ]; then
         func_print_head "Install mysql"
-        yum install mysql -y 
+        yum install mysql -y
+        func_status_check $? 
 
         func_print_head "Load schema" 
         mysql -h mysql-dev.rdevops72.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql 
+        func_status_check $?
     if
 }
 
@@ -41,17 +46,21 @@ func_schema_setup() {
 func_app_prereq() {
   func_print_head "Add Application User"
   useradd ${app_user}
+  func_status_check $? 
 
   func_print_head "Create Application Dir"
   rm -rf /app
-  mkdir /app 
+  mkdir /app
+  func_status_check $?
 
   func_print_head "Download application content" 
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip 
+  func_status_check $? 
 
   func_print_head "Extract Application content"
   cd /app 
   unzip /tmp/${component}.zip
+  func_status_check $?
   #cd /app 
 
   # func_print_head "Download mvn dependencies" 
@@ -64,11 +73,13 @@ func_app_prereq() {
 func_systemd_setup() {
   func_print_head "Copy Catalogue SystemD file"
   cp $script_path/${component}.service /etc/systemd/system/${component}.service
+  func_status_check $? 
 
   func_print_head "Start ${component} Service"
   systemctl daemon-reload
   systemctl enable ${component} 
   systemctl start ${component}
+  func_status_check $? 
 }
 
 
@@ -77,10 +88,12 @@ func_systemd_setup() {
 func_nodejs() {
   func_print_head "Configuring Node js Repos"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+  func_status_check $? 
 
   func_print_head "Install NodeJs"
   yum install nodejs -y
-
+  
+  func_status_check $? 
   #func_app_prereq
   func_print_head "Add Application User" 
   useradd  ${app_user} #roboshop
@@ -99,6 +112,8 @@ func_nodejs() {
   
   func_print_head "Install Nodejs Dependencies"
   npm install 
+  func_status_check $?  
+
   
   func_schema_setup
   func_systemd_setup
