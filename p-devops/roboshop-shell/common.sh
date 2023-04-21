@@ -101,10 +101,21 @@ func_java() {
   func_print_head "Install mvn" 
   yum install maven -y
 
+  if [ $? -eq 0 ]; then
+    echo -e "\e[32mSUCCESS[0m"
+  else 
+    echo -e "\e[31mFAILURE[0m"
   func_app_prereq
+  if
 
   func_print_head "Download mvn dependencies" 
   mvn clean package 
+  if [ $? -eq 0 ]; then
+    echo -e "\e[32mSUCCESS[0m"
+  else 
+    echo -e "\e[31mFAILURE[0m"
+  func_app_prereq
+  if
   mv target/${component}-1.0.jar ${component}.jar
   func_schema_setup
   func_systemd_setup
