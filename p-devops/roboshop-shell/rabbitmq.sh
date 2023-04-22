@@ -6,7 +6,7 @@ rabbitmq_appuser_password=$1
 if [-z "$rabbitmq_appuser_password"]; then
     echo Input Roboshop_appuser_password Missing
     exit
-if 
+fi
 
 func_print_head "Set ErLang Repos"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash  &>>$log_file
