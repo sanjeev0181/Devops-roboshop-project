@@ -31,7 +31,7 @@ func_status_check() {
 
 #mongodb install
 func_schema_setup() {
-    if [ "$schema_setup" == "mango"]; then
+    if [ "$schema_setup" == "mongo"]; then
       func_print_head Set systemD service 
       cp $script_path/mongo.repo  /etc/yum.repos.d/mongo.repo   &>>$log_file
       func_status_check $?
