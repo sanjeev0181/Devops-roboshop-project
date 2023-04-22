@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")  
-source ${script_path}/common.sh# echo ${app_user}
+source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
 
 if [-z "$rabbitmq_appuser_password"]; then
@@ -8,7 +8,7 @@ if [-z "$rabbitmq_appuser_password"]; then
     exit
 if
 
-component=payment
+component=payment 
 func_python
 
 # echo -e "\e[36m>>>>>>>>> Install python <<<<<<<<\e[0m"
