@@ -6,7 +6,7 @@ mysql_root_password=$1
 if [-z "$mysql_root_password"]; then
     echo Input mysql root password Missing
     exit
-if
+fi
 func_print_head "Disable mysql 8 version"
 dnf module disable mysql -y  &>>$log_file
 func_status_check $?
@@ -25,5 +25,5 @@ systemctl start mysqld  &>>$log_file
 func_status_check $?
 
 func_print_head "Reset mysql password"
-mysql_secure_installation --set-root-pass $mysql_root_password &>>$log_file
+mysql_secure_installation --set-root-pass $mysql_root_password  &>>$log_file
 func_status_check $?
