@@ -4,14 +4,28 @@ variable "sample_string" {
 
 ## Shell Scripting equivalent sample_string="Hello World"
 
-# To print in shell script we use echo following is the syntax in shell
-# echo $sample_string
-output "sample_string" {
-  value = var.sample_string 
+variable "sample_number" {
+  default = 100
+}
+#10.6 is also a number in terraform
+
+
+variable "sample_boolean" {
+  default = true
 }
 
-## In above case we are printing just variable, If variable is a combination of some string then following is the syntax.
+## Boolean are true or false
+## Boolean and number does not need to the quoted, only strings need to be qoutes that to be 
+## with double quotes. terraform does  support for single quotes .
 
-output "sample_string1" {
-  value = "Value of sample_string = ${var.sample_string}" 
+
+### Variable Types
+# So far we have seen is default variable type
+
+# we have list variable type , Meaning single variable can hold multiple values.
+
+variable "sample_list" {
+    default = [100,"hello",true,123]
 }
+
+## Data type inside the list does not matter in terraform

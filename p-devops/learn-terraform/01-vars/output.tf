@@ -9,3 +9,11 @@ output "sample_string" {
 output "sample_string1" {
   value = "Value of sample_string = ${var.sample_string}" 
 }
+
+
+## Values from list
+# Second value in list
+
+output "sample_list_2  " {
+  value = "Value of sample_list = ${var.sample_list[1]}" 
+}
