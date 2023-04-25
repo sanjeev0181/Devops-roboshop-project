@@ -19,7 +19,7 @@ resource "aws_instance" "frontend" {
 
 resource "aws_route53_record" "frontend" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "frontend-dev.rdevopsb72.online"
+  name    = "frontend-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.frontend.private_ip]
@@ -36,7 +36,7 @@ resource "aws_instance" "mongodb" {
 
 resource "aws_route53_record" "mongodb" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "mongodb-dev.rdevopsb72.online"
+  name    = "mongodb-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.mongodb.private_ip]
@@ -53,7 +53,7 @@ resource "aws_instance" "catalogue" {
 
 resource "aws_route53_record" "catalogue" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "catalogue-dev.rdevopsb72.online"
+  name    = "catalogue-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.catalogue.private_ip]
@@ -70,7 +70,7 @@ resource "aws_instance" "redis" {
 
 resource "aws_route53_record" "redis" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "redis-dev.rdevopsb72.online"
+  name    = "redis-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.redis.private_ip]
@@ -87,7 +87,7 @@ resource "aws_instance" "user" {
 
 resource "aws_route53_record" "user" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "user-dev.rdevopsb72.online"
+  name    = "user-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.user.private_ip]
@@ -104,7 +104,7 @@ resource "aws_instance" "cart" {
 
 resource "aws_route53_record" "cart" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "cart-dev.rdevopsb72.online"
+  name    = "cart-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.cart.private_ip]
@@ -121,7 +121,7 @@ resource "aws_instance" "mysql" {
 
 resource "aws_route53_record" "mysql" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "mysql-dev.rdevopsb72.online"
+  name    = "mysql-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.mysql.private_ip]
@@ -138,7 +138,7 @@ resource "aws_instance" "shipping" {
 
 resource "aws_route53_record" "shipping" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "shipping-dev.rdevopsb72.online"
+  name    = "shipping-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.shipping.private_ip]
@@ -172,7 +172,7 @@ resource "aws_instance" "payment" {
 
 resource "aws_route53_record" "payment" {
   zone_id = "Z03986262CQPCHNJNZM9L"
-  name    = "payment-dev.rdevopsb72.online"
+  name    = "payment-dev.ramakrishna.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.payment.private_ip]
