@@ -41,4 +41,3 @@ variable "sample_dict" {
 
 
   
-}
