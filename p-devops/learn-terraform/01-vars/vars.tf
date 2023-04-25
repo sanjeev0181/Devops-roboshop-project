@@ -29,3 +29,16 @@ variable "sample_list" {
 }
 
 ## Data type inside the list does not matter in terraform
+
+# We have a directory ( or map ),meaning single variable will have multiple values, & each value going to have 
+# sperate name.
+
+variable "sample_dict" {
+    default = { number1 = 100, string = "hello", number2 = 123 , boolean = true}
+}
+
+## This is the most preferred variable over the list when we declare the data.
+
+
+  
+}
