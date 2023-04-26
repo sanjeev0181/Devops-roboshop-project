@@ -4,6 +4,10 @@ data "aws_ami" "centos" {
   name_regex       = "Centos-8-DevOps-Practice"
 }
 
+data "aws_security_group" "selected" {
+    name="allows_tls"
+}
+
 variable "instance_type" {
   default = "t3.micro"
 }
