@@ -75,7 +75,6 @@ resource "aws_instance" "example_instance" {
     user     = "Administrator"
     password = "password"
   }
-}
   provisioner "remote-exec" {
     inline = [
       "Invoke-WebRequest https://download.jboss.org/wildfly/22.0.1.Final/wildfly-22.0.1.Final.zip -OutFile C:/wildfly-22.0.1.Final.zip",
@@ -85,3 +84,5 @@ resource "aws_instance" "example_instance" {
       "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment' -Name PATH -Value $env:PATH+';C:\\wildfly-22.0.1.Final\\bin'"
     ]
   }
+}
+  
