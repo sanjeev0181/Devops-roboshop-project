@@ -8,17 +8,17 @@
 #     value = data.aws_security_group.selected
 # }
 
-data "aws_security_groups" "test" {}
+# data "aws_security_groups" "test" {}
 
-data "aws_security_group" "single" {
-    count  = length(data.aws_security_groups.test.ids)
-    id = data.aws_security_group.test.ids[count.index]
-}
+# data "aws_security_group" "single" {
+#     count  = length(data.aws_security_groups.test.ids)
+#     id = data.aws_security_group.test.ids[count.index]
+# }
 
-output "all_sg" {
-    value = data.aws_security_groups.test
-}
+# output "all_sg" {
+#     value = data.aws_security_groups.test
+# }
 
-output "single" {
-    value = data.aws_security_group.test
-}
+# output "single" {
+#     value = data.aws_security_group.test
+# }
