@@ -60,7 +60,7 @@ resource "aws_security_group" "example_security_group" {
 }
 
 resource "aws_instance" "example_instance" {
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = "ami-08c16ed9da5e049c2"
   instance_type = "t2.micro"
   key_name      = aws_key_pair.example_keypair.key_name
   #subnet_id     = "subnet-0c55b159cbfafe1f0"
@@ -74,6 +74,7 @@ resource "aws_instance" "example_instance" {
     type     = "winrm"
     user     = "Administrator"
     password = "password"
+    host     = self.public_ip
   }
   provisioner "remote-exec" {
     inline = [
@@ -84,5 +85,15 @@ resource "aws_instance" "example_instance" {
       "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment' -Name PATH -Value $env:PATH+';C:\\wildfly-22.0.1.Final\\bin'"
     ]
   }
+#   provisioner "file" {
+#     source      = "path/to/your/app.war"
+#     destination = "C:/wildfly-22.0.1.Final/standalone/deployments/app.war"
+#   }
+
+#   provisioner "remote-exec" {
+#     inline = [
+#       "C:/wildfly-22.0.1.Final/bin/standalone.bat -c standalone-full.xml"
+#     ]
+#   }
 }
   
