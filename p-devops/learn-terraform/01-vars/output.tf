@@ -1,3 +1,5 @@
+## https://spacelift.io/blog/terraform-output
+
 # To print in shell script we use echo following is the syntax in shell
 # echo $sample_string
 output "sample_string" {
@@ -30,4 +32,8 @@ output "sample_dict_bool" {
 
 output "env" {
   value = var.env
+}
+
+output "auto_num1" {
+  value = var.auto_num1
 }
