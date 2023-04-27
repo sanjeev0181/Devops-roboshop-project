@@ -4,7 +4,7 @@ resource "aws_key_pair" "example_keypair" {
 }
 
 resource "aws_security_group" "example_security_group" {
-  name_prefix = "example-sg"
+  name_prefix = "exam"
 
   ingress {
     from_port = 3389
@@ -18,7 +18,6 @@ resource "aws_instance" "example_instance" {
   ami           = "ami-0c55b159cbfafe1f0"
   instance_type = "t2.micro"
   key_name      = aws_key_pair.example_keypair.key_name
-  #subnet_id     = "subnet-0c55b159cbfafe1f0"
   security_groups = [aws_security_group.example_security_group.name]
 
   tags = {
@@ -39,14 +38,14 @@ resource "aws_instance" "example_instance" {
       "Set-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment' -Name PATH -Value $env:PATH+';C:\\wildfly-22.0.1.Final\\bin'"
     ]
   }
-#   provisioner "file" {
-#     source      = "path/to/your/app.war"
-#     destination = "C:/wildfly-22.0.1.Final/standalone/deployments/app.war"
-#   }
+  provisioner "file" {
+    source      = "path/to/your/app.war"
+    destination = "C:/wildfly-22.0.1.Final/standalone/deployments/app.war"
+  }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#       "C:/wildfly-22.0.1.Final/bin/standalone.bat -c standalone-full.xml"
-#     ]
-#   }
+  provisioner "remote-exec" {
+    inline = [
+      "C:/wildfly-22.0.1.Final/bin/standalone.bat -c standalone-full.xml"
+    ]
+  }
 }
