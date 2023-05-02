@@ -8,13 +8,13 @@ data "aws_security_group" "selected" {
     name="allows_tls"
 }
 
-variable "instance_type" {
-  default = "t2.micro"
-}
+# variable "instance_type" {
+#   default = "t2.micro"
+# }
 
-variable "components" {
-  default = ["frontent", "mongodb","catalogue"]
-}
+# variable "components" {
+#   default = ["frontent", "mongodb","catalogue"]
+# }
 
 resource "aws_instance" "frontend" {
   ami           = data.aws_ami.centos.image_id
