@@ -1,6 +1,6 @@
 #data "aws_ami" "ubuntu2204" {
 data "aws_ami" "example" {
-  owners           = ["521045274894"]
+  owners           = ["self"]
   most_recent      = true
   name_regex       = "Centos-8-DevOps-Practice"
 }
