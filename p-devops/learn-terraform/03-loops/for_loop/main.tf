@@ -1,6 +1,3 @@
- resource "null_resource" "null" {
-    count = 20
-}
 
 resource "null_resource" "fruits" {
    count = lenght(var.fruits)  
@@ -12,6 +9,9 @@ resource "null_resource" "fruits" {
 }
 
 variable "fruits" {
-    default  = ["apply","banana","organa"]  
-    description = "(optional) describe your variable"
+   default = {
+    apple = 100
+    organa = 200
+    banana = 300
+   }
 }
