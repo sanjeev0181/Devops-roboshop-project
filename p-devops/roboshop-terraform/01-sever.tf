@@ -65,7 +65,7 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = [data.aws_security_group.selected.id]
 
   tags = {
-    Name = ${each.value["name"]}
+    Name = each.value["name"]
   }
 }
 
