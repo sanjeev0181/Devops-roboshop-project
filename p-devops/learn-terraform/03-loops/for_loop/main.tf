@@ -6,7 +6,7 @@ resource "null_resource" "fruits" {
    provisioner "local-exec" { 
     #command = "echo Fruit Name - $(var.fruits[count.index])"
     #command = "echo ${length(var.fruits)}"
-    command = "echo Fruit Name - ${each.key}"
+    command = "echo Fruit Name - ${each.key} - ${each.value}"
      
    }
 }
