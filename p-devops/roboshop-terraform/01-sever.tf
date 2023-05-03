@@ -1,4 +1,4 @@
-data "aws_ami" "ubuntu22.04" {
+data "aws_ami" "ubuntu2204" {
   owners           = ["521045274894"]
   most_recent      = true
   name_regex       = "Centos-8-DevOps-Practice"
@@ -60,7 +60,7 @@ variable "components" {
 resource "aws_instance" "instance" {
   #count = length(var.components)
   for_each = var.components
-  ami           = data.aws_ami.ubuntu22.04.image_id
+  ami           = data.aws_ami.ubuntu2204.image_id
   instance_type = each.value["instance_type"]
   vpc_security_group_ids = [data.aws_security_group.selected.id]
 
