@@ -1,8 +1,8 @@
-# data "aws_ami" "centos" {
-#   owners           = ["521045274894"]
-#   most_recent      = true
-#   name_regex       = "Centos-8-DevOps-Practice"
-# }
+data "aws_ami" "ubuntu" {
+  owners           = ["521045274894"]
+  most_recent      = true
+  name_regex       = "Centos-8-DevOps-Practice"
+}
 
 data "aws_security_group" "selected" {
     name="allows_tls"
@@ -60,7 +60,7 @@ variable "components" {
 resource "aws_instance" "instance" {
   #count = length(var.components)
   for_each = var.components
-  ami           = data.aws_ami.centos.image_id
+  ami           = data.aws_ami.ubuntu.image_id
   instance_type = each.value["instance_type"]
   vpc_security_group_ids = [data.aws_security_group.selected.id]
 
