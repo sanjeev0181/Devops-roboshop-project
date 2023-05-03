@@ -8,21 +8,64 @@ data "aws_security_group" "selected" {
     name="allows_tls"
 }
 
-# variable "instance_type" {
-#   default = "t2.micro"
-# }
+variable "components" {
+  default = {
+    frontend = {
+      name = "frontend"
+      instance_type = "t2.micro"
+    }
+    mangodb = {
+      name = "mangodb"
+      instance_type = "t2.micro"
+    }
+    catalogue = {
+      name = "catalogue"
+      instance_type = "t2.micro"
+    }
+    redis = {
+      name = "redis"
+      instance_type = "t2.micro"
+    }
+    user = {
+      name = "user"
+      instance_type = "t2.micro"
+    }
+    cart = {
+      name = "cart"
+      instance_type = "t2.micro"
+    }
+    mysql = {
+      name = "mysql"
+      instance_type = "t2.micro"
+    }
+    shipping = {
+      name = "shipping"
+      instance_type = "t2.micro"
+    }
+    rabbitmq = {
+      name = "rabbitmq"
+      instance_type = "t2.medium"
+    }
+    payment = {
+      name = "payment"
+      instance_type = "t2.micro"
+    }
+    dispatch = {
+      name = "dispatch"
+      instance_type = "t2.micro"
+    }
+  }
+}
 
-# variable "components" {
-#   default = ["frontent", "mongodb","catalogue"]
-# }
-
-resource "aws_instance" "frontend" {
+resource "aws_instance" "instance" {
+  #count = length(var.components)
+  for_each = var.components
   ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
+  instance_type = each.value["instance_type"]
   vpc_security_group_ids = [data.aws_security_group.selected.id]
 
   tags = {
-    Name = var.components[count.index]
+    Name = var.value["name"]
   }
 }
 
