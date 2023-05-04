@@ -5,7 +5,12 @@ shipping file
 bash shipping.sh Roboshop@1
 bash payment.sh roboshop123
 bash mysql.sh Roboshop@1
+bash rabbitmq.sh roboshop123
 
 >file     #this will overwrite to the content
 >>file    ##this will append to the content
 &>>file   ##this will append output and error to the file
+
+running step
+frontend --> mangodb  --> Catalogue --> user --> mysql --> shipping --> rabbitmq --> payment -->
+redis

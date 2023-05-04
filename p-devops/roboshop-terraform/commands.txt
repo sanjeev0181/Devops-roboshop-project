@@ -10,3 +10,5 @@ terraform workspace select prod
 #Apply the resource configuration with prod.tfvars
 terraform apply -var-file=prod.tfvars
 
+#single instance destroy 
+terraform destroy -auto-approve -target="aws_route53_record.records[\"payment"\]"
