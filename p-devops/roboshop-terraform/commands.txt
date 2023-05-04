@@ -12,3 +12,12 @@ terraform apply -var-file=prod.tfvars
 
 #single instance destroy 
 terraform destroy -auto-approve -target="aws_route53_record.records[\"payment"\]"
+
+terraform init -backend-config=env-dev/state.tfvars
+
+when jenkin run this commands environment
+
+terraform init -backend-config=${env}/state.tfvars
+
+#terraform to jenkins confuguration link
+https://www.youtube.com/watch?v=_X-8Zcz7YPM&list=PLLmNg_q93mewZj7MhQv-z2_-4bUblQB2D&index=28
